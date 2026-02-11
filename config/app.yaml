@@ -1,0 +1,37 @@
+# Arquivo de configuração para Google App Engine
+# Use este arquivo se preferir App Engine ao invés de Cloud Storage
+
+runtime: python39
+
+handlers:
+# Servir arquivos estáticos
+- url: /styles
+  static_dir: styles
+  secure: always
+
+- url: /js
+  static_dir: js
+  secure: always
+
+- url: /sw.js
+  static_files: sw.js
+  upload: sw.js
+  secure: always
+
+- url: /
+  static_files: index.html
+  upload: index.html
+  secure: always
+
+- url: /.*
+  static_files: index.html
+  upload: index.html
+  secure: always
+
+# Configurações de cache
+default_expiration: "1h"
+
+# Headers de segurança
+env_variables:
+  CACHE_CONTROL_STATIC: "public, max-age=3600"
+  CACHE_CONTROL_HTML: "public, max-age=300"

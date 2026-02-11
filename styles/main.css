@@ -1,0 +1,313 @@
+/* ==========================================
+   VARIÁVEIS CSS
+   ========================================== */
+:root {
+    /* Cores principais */
+    --primary-color: #4A90E2;
+    --secondary-color: #7B68EE;
+    --success-color: #5CB85C;
+    --danger-color: #E74C3C;
+    --warning-color: #F39C12;
+    
+    /* Cores de fundo */
+    --bg-primary: #F5F7FA;
+    --bg-card: #FFFFFF;
+    --bg-header: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    
+    /* Cores de texto */
+    --text-primary: #2C3E50;
+    --text-secondary: #7F8C8D;
+    --text-light: #BDC3C7;
+    
+    /* Bordas e sombras */
+    --border-radius: 12px;
+    --border-color: #E1E8ED;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    --box-shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.12);
+    
+    /* Espaçamento */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Tipografia */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-size-base: 16px;
+    --font-size-sm: 14px;
+    --font-size-lg: 18px;
+    --font-size-xl: 24px;
+}
+
+/* ==========================================
+   RESET E BASE
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: var(--font-size-base);
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================
+   HEADER
+   ========================================== */
+header {
+    background: var(--bg-header);
+    color: white;
+    padding: var(--spacing-lg) var(--spacing-md);
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: var(--font-size-lg);
+    opacity: 0.95;
+    margin-bottom: var(--spacing-sm);
+}
+
+#current-date {
+    font-size: var(--font-size-sm);
+    opacity: 0.9;
+    margin-top: var(--spacing-xs);
+    font-weight: 500;
+}
+
+/* ==========================================
+   LAYOUT PRINCIPAL
+   ========================================== */
+.container {
+    flex: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing-lg) var(--spacing-md);
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--spacing-lg);
+    align-items: start;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================
+   CARDS
+   ========================================== */
+.card {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: var(--box-shadow-hover);
+}
+
+.card h2 {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.card h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-secondary);
+}
+
+/* ==========================================
+   BOTÕES
+   ========================================== */
+button {
+    font-family: var(--font-family);
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.control-btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: var(--font-size-base);
+}
+
+.primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.primary:hover:not(:disabled) {
+    background-color: #3A7BC8;
+}
+
+.secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.secondary:hover:not(:disabled) {
+    background-color: #6A57D9;
+}
+
+.danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.danger:hover:not(:disabled) {
+    background-color: #C0392B;
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+footer {
+    background-color: var(--text-primary);
+    color: white;
+    text-align: center;
+    padding: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+}
+
+footer p {
+    margin: var(--spacing-xs) 0;
+    font-size: var(--font-size-sm);
+}
+
+.cache-info {
+    opacity: 0.8;
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+   ========================================== */
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --font-size-base: 14px;
+    }
+    
+    header {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+    
+    header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .container {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+    
+    .card {
+        padding: var(--spacing-md);
+    }
+}
+
+/* ==========================================
+   ANIMAÇÕES
+   ========================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.slide-in {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* ==========================================
+   SCROLLBAR CUSTOMIZADA
+   ========================================== */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}

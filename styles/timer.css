@@ -1,0 +1,242 @@
+/* ==========================================
+   DISPLAY DO CRONÔMETRO
+   ========================================== */
+.timer-display {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.time-value {
+    font-size: 4rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.05em;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    line-height: 1;
+}
+
+.time-value span {
+    display: inline-block;
+    min-width: 80px;
+}
+
+.milliseconds {
+    margin-top: var(--spacing-sm);
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+}
+
+.milliseconds::before {
+    content: '.';
+    margin-right: 2px;
+}
+
+/* ==========================================
+   CONTROLES DO CRONÔMETRO
+   ========================================== */
+.timer-controls {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.timer-controls .control-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-base);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Estado do cronômetro rodando */
+.timer-running .timer-display {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    }
+    50% {
+        box-shadow: 0 8px 30px rgba(102, 126, 234, 0.5);
+    }
+}
+
+/* ==========================================
+   SEÇÃO DE VOLTAS
+   ========================================== */
+.lap-section {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border-color);
+}
+
+.lap-section h3 {
+    color: var(--text-secondary);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+.lap-record-btn {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--secondary-color);
+    color: white;
+    font-size: var(--font-size-base);
+    border-radius: 8px;
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.lap-record-btn:hover:not(:disabled) {
+    background-color: #6A57D9;
+}
+
+/* ==========================================
+   LISTA DE VOLTAS
+   ========================================== */
+.lap-list {
+    list-style: none;
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: var(--spacing-xs);
+}
+
+.lap-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-bottom: var(--spacing-xs);
+    background-color: var(--bg-primary);
+    border-radius: 8px;
+    border-left: 3px solid var(--secondary-color);
+    transition: all 0.2s ease;
+    animation: slideIn 0.3s ease-out;
+}
+
+.lap-item:hover {
+    background-color: #F0EFFF;
+    transform: translateX(5px);
+}
+
+.lap-item:first-child {
+    border-left-color: var(--success-color);
+    font-weight: 600;
+}
+
+.lap-number {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+.lap-time {
+    font-family: 'Courier New', monospace;
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+.lap-diff {
+    font-size: var(--font-size-sm);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.lap-diff.faster {
+    background-color: #D4EDDA;
+    color: #155724;
+}
+
+.lap-diff.slower {
+    background-color: #F8D7DA;
+    color: #721C24;
+}
+
+/* Mensagem de lista vazia */
+.lap-list:empty::after {
+    content: 'Nenhuma volta registrada';
+    display: block;
+    text-align: center;
+    padding: var(--spacing-lg);
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+   ========================================== */
+@media (max-width: 768px) {
+    .time-value {
+        font-size: 3rem;
+    }
+    
+    .time-value span {
+        min-width: 60px;
+    }
+    
+    .milliseconds {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .time-value {
+        font-size: 2.5rem;
+    }
+    
+    .time-value span {
+        min-width: 50px;
+    }
+    
+    .milliseconds {
+        font-size: 1rem;
+    }
+    
+    .timer-controls {
+        flex-direction: column;
+    }
+    
+    .timer-controls .control-btn {
+        width: 100%;
+    }
+    
+    .lap-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+}
+
+/* ==========================================
+   ANIMAÇÕES ESPECIAIS
+   ========================================== */
+@keyframes countUp {
+    from {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.timer-running .time-value span {
+    animation: countUp 0.5s ease-out;
+}

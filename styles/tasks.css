@@ -1,0 +1,239 @@
+/* ==========================================
+   CONTAINER DE ADICIONAR TAREFA
+   ========================================== */
+.add-task-container {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+#task-input {
+    flex: 1;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: var(--font-size-base);
+    font-family: var(--font-family);
+    transition: all 0.3s ease;
+}
+
+#task-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+#task-input::placeholder {
+    color: var(--text-light);
+}
+
+#add-task-btn {
+    width: 50px;
+    height: 50px;
+    background-color: var(--success-color);
+    color: white;
+    font-size: 28px;
+    font-weight: 300;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+#add-task-btn:hover {
+    background-color: #4CAF50;
+    transform: scale(1.05);
+}
+
+#add-task-btn:active {
+    transform: scale(0.95);
+}
+
+/* ==========================================
+   LISTA DE TAREFAS
+   ========================================== */
+.task-list {
+    list-style: none;
+    margin-bottom: var(--spacing-lg);
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: var(--spacing-xs);
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    background-color: var(--bg-primary);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease-out;
+}
+
+.task-item:hover {
+    background-color: #E8F4F8;
+    transform: translateX(5px);
+}
+
+.task-item.completed {
+    opacity: 0.7;
+    border-left-color: var(--success-color);
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+}
+
+/* ==========================================
+   CHECKBOX
+   ========================================== */
+.task-checkbox {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    cursor: pointer;
+    appearance: none;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.task-checkbox:hover {
+    border-color: var(--primary-color);
+}
+
+.task-checkbox:checked {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.task-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* ==========================================
+   TEXTO DA TAREFA
+   ========================================== */
+.task-text {
+    flex: 1;
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    word-break: break-word;
+    line-height: 1.4;
+}
+
+/* ==========================================
+   BOTÃO DE DELETAR
+   ========================================== */
+.delete-task-btn {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    background-color: transparent;
+    color: var(--danger-color);
+    font-size: 20px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-task-btn:hover {
+    background-color: var(--danger-color);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* ==========================================
+   ESTATÍSTICAS DE TAREFAS
+   ========================================== */
+.task-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    border-top: 1px solid var(--border-color);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.task-stats span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.task-stats strong {
+    color: var(--primary-color);
+    font-size: var(--font-size-base);
+}
+
+.clear-btn {
+    padding: 6px 12px;
+    background-color: var(--warning-color);
+    color: white;
+    font-size: var(--font-size-sm);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.clear-btn:hover {
+    background-color: #E67E22;
+}
+
+/* ==========================================
+   MENSAGEM DE LISTA VAZIA
+   ========================================== */
+.empty-state {
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+    color: var(--text-light);
+    font-size: var(--font-size-base);
+}
+
+.empty-state::before {
+    content: '📝';
+    display: block;
+    font-size: 48px;
+    margin-bottom: var(--spacing-sm);
+    opacity: 0.5;
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+   ========================================== */
+@media (max-width: 480px) {
+    .add-task-container {
+        flex-direction: column;
+    }
+    
+    #add-task-btn {
+        width: 100%;
+        height: 45px;
+    }
+    
+    .task-stats {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .clear-btn {
+        width: 100%;
+    }
+}
